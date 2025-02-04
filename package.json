@@ -4,6 +4,7 @@
   "description": "Api para preenchimento e conexao de informacoes para portfolio",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "nodemon app.js"
   },
   "author": "Arthur Bergamascki",

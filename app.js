@@ -13,13 +13,31 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
-app.post('/AllData', async (req, res) =>{
-    const { name_table } =  req.body;
+app.post('/AllData', async (req, res) => {
+    const { name_table } = req.body;
     try {
-        const data = await db.getAllData(name_table); 
-        res.json(data); 
+        const data = await db.getAllData(name_table);
+        res.json(data);
     } catch (err) {
-        res.status(400).json({err: 'Erro no processamento de requisição AllData!'})
+        res.status(400).json({ err: 'Erro no processamento de requisição AllData!' })
+    }
+})
+
+app.get('/users', async (req, res) => {
+    try {
+        const users = await db.getAllUsers();
+        res.json(users);
+    } catch (error) {
+        res.status(400).json({ err: 'Erro no processamento de requisição users!' })
+    }
+})
+
+app.get('/skills', async (req, res) => {
+    try {
+        const users = await db.getAllSkills();
+        res.json(users);
+    } catch (error) {
+        res.status(400).json({ err: 'Erro no processamento de requisição users!' })
     }
 })
 

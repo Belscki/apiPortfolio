@@ -1,6 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
 
-
 function connect() {
   return new sqlite3.Database(process.env.DB_PATH, (err) => {
     if (err) {
@@ -109,13 +108,14 @@ const createTables = () => {
       console.error('Erro ao criar a tabela "projetos_skills":', err.message);
     }
   });
+
+  
   db.close();
 };
 
 async function getAllData(tableName) {
-  const db = connect();
+  const db = connect();  
   const query = `SELECT * FROM ${tableName}`;
-
   return new Promise((resolve, reject) => {
     db.all(query, [], (err, rows) => {
       if (err) {
@@ -124,13 +124,46 @@ async function getAllData(tableName) {
         resolve(rows);
       }
     });
-    db.close();
+    db.close();  
   });
 }
 
-createTables()
+async function getAllUsers() {
+  const db = connect();  
+  const tableName = "users";
+  const query = `SELECT * FROM ${tableName}`;
+  return new Promise((resolve, reject) => {
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        reject(new Error(`Erro ao acessar a tabela ${tableName}: ${err.message}`));
+      } else {
+        resolve(rows);
+      }
+    });
+    db.close();  
+  });
+}
 
+async function getAllSkills() {
+  const db = connect();  
+  const tableName = "skills";
+  const query = `SELECT * FROM ${tableName}`;
+  return new Promise((resolve, reject) => {
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        reject(new Error(`Erro ao acessar a tabela ${tableName}: ${err.message}`));
+      } else {
+        resolve(rows);
+      }
+    });
+    db.close();  
+  });
+}
+
+createTables();
 
 module.exports = {
-  getAllData
+  getAllData,
+  getAllUsers,
+  getAllSkills
 };
