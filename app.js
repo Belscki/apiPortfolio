@@ -34,8 +34,44 @@ app.get('/users', async (req, res) => {
 
 app.get('/skills', async (req, res) => {
     try {
-        const users = await db.getAllSkills();
-        res.json(users);
+        const skills = await db.getAllSkills();
+        res.json(skills);
+    } catch (error) {
+        res.status(400).json({ err: 'Erro no processamento de requisição users!' })
+    }
+})
+
+app.get('/contato', async (req, res) => {
+    try {
+        const contato = await db.getAllContato();
+        res.json(contato);
+    } catch (error) {
+        res.status(400).json({ err: 'Erro no processamento de requisição users!' })
+    }
+})
+
+app.get('/features', async(req, res) => {
+    try {
+        const features = await db.getAllFeatures();
+        res.json(features);
+    } catch (error) {
+        res.status(400).json({ err: 'Erro no processamento de requisição users!' })
+    }
+})
+
+app.get('/projetos', async(req, res) => {
+    try {
+        const projetos = await db.getAllProjetos();
+        res.json(projetos);
+    } catch (error) {
+        res.status(400).json({ err: 'Erro no processamento de requisição users!' })
+    }
+})
+
+app.get('/projetosskills', async(req, res) => {
+    try {
+        const projetosskills = await db.getAllProjetosSkills();
+        res.json(projetosskills);
     } catch (error) {
         res.status(400).json({ err: 'Erro no processamento de requisição users!' })
     }

@@ -160,10 +160,78 @@ async function getAllSkills() {
   });
 }
 
+async function getAllContato() {
+  const db = connect();  
+  const tableName = "contato";
+  const query = `SELECT * FROM ${tableName}`;
+  return new Promise((resolve, reject) => {
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        reject(new Error(`Erro ao acessar a tabela ${tableName}: ${err.message}`));
+      } else {
+        resolve(rows);
+      }
+    });
+    db.close();  
+  });
+}
+
+async function getAllFeatures() {
+  const db = connect();  
+  const tableName = "features";
+  const query = `SELECT * FROM ${tableName}`;
+  return new Promise((resolve, reject) => {
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        reject(new Error(`Erro ao acessar a tabela ${tableName}: ${err.message}`));
+      } else {
+        resolve(rows);
+      }
+    });
+    db.close();  
+  });
+}
+
+async function getAllProjetos() {
+  const db = connect();  
+  const tableName = "projetos";
+  const query = `SELECT * FROM ${tableName}`;
+  return new Promise((resolve, reject) => {
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        reject(new Error(`Erro ao acessar a tabela ${tableName}: ${err.message}`));
+      } else {
+        resolve(rows);
+      }
+    });
+    db.close();  
+  });
+}
+
+async function getAllProjetosSkills() {
+  const db = connect();  
+  const tableName = "projetos_skills";
+  const query = `SELECT * FROM ${tableName}`;
+  return new Promise((resolve, reject) => {
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        reject(new Error(`Erro ao acessar a tabela ${tableName}: ${err.message}`));
+      } else {
+        resolve(rows);
+      }
+    });
+    db.close();  
+  });
+}
+
 createTables();
 
 module.exports = {
   getAllData,
   getAllUsers,
-  getAllSkills
+  getAllSkills,
+  getAllContato,
+  getAllFeatures,
+  getAllProjetos,
+  getAllProjetosSkills
 };
